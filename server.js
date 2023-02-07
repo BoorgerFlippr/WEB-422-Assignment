@@ -44,7 +44,7 @@ app.get("/api/movies", function(req,res){
     var title = req.query.title;
 
     db.getAllMovies(page, perPage, title).then((data)=>{
-        res.json({message: data});
+        res.json(data);
     }).catch((err)=>
     {
         res.status(204).send("Movie does not exist in the collection");
@@ -57,7 +57,7 @@ app.get("/api/movies/:id", function(req, res){
 
     db.getMovieById(id).then((data)=>
     {
-        res.json({message: data});
+        res.json(data);
     }).catch((err) =>
     {
         res.status(204).send("Movie does not exist in the collection");
@@ -70,7 +70,7 @@ app.put("/api/movies/:id", function(req,res){
     var data = req.body;
 
     db.updateMovieById(data, id).then(()=>{
-        res.json({message: `movie ${id} has been deleted`});
+        res.json({message: `movie ${id} has been updated`});
     }).catch((err)=>{
         res.send({message: err});
     })
